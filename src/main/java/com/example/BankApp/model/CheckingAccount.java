@@ -1,4 +1,17 @@
 package com.example.BankApp.model;
 
-public class CheckingAccount {
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("CHECKING")
+public class CheckingAccount extends BankAccount {
+
+    public CheckingAccount() {}
+
+    public CheckingAccount(String name) {
+        super(name);
+
+
+    }
 }

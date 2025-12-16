@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 public abstract class BankAccount {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="account_id")
     private String id;
 
@@ -22,8 +23,7 @@ public abstract class BankAccount {
 
     protected BankAccount() {}
 
-    protected BankAccount(String id, String name) {
-        this.id = id;
+    protected BankAccount(String name) {
         this.name = name;
         this.balance = BigDecimal.ZERO;
     }
