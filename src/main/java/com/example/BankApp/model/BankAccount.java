@@ -28,4 +28,24 @@ public abstract class BankAccount {
         this.balance = BigDecimal.ZERO;
     }
 
+    public void deposit(BigDecimal amount){
+        if(amount == null || amount.signum() < 0){
+            throw new IllegalArgumentException("Amount must be greater than zero");
+        }
+
+        this.balance = this.balance.add(amount);
+    }
+
+    public void withdraw(BigDecimal amount){
+        if(amount == null || amount.signum() < 0){
+            throw new IllegalArgumentException("Amount must be greater than zero");
+        }
+
+        if (this.balance.compareTo(amount) < 0){
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+
+        this.balance = this.balance.subtract(amount);
+    }
+
 }
