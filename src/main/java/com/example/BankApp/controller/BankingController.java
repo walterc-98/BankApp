@@ -21,6 +21,7 @@ public class BankingController {
     @PostMapping("/create")
     public ResponseEntity<Void> create(@RequestBody CheckingAccount checkingAccount){
         bankingService.createAccount(checkingAccount);
+        System.out.println("Account created for " + checkingAccount.getName() + " with id " + checkingAccount.getId());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
