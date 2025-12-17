@@ -11,7 +11,7 @@ public class CheckingAccount extends BankAccount {
 
     public CheckingAccount(String name) {
         super(name);
-
+        System.out.println("CheckingAccount created for " + name + " and id " + getId());
 
     }
 }
