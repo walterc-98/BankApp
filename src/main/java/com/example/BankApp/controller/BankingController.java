@@ -4,10 +4,9 @@ import com.example.BankApp.model.CheckingAccount;
 import com.example.BankApp.service.BankingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/v1/accounts")
@@ -23,5 +22,22 @@ public class BankingController {
     public ResponseEntity<Void> create(@RequestBody CheckingAccount checkingAccount){
         bankingService.createAccount(checkingAccount);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/{id}/deposit")
+    public ResponseEntity<Void> deposit(@PathVariable String id, @RequestBody BigDecimal amount){
+        bankingService.deposit(id,amount);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PostMapping("/{id}/withdraw")
+    public ResponseEntity<Void> withdraw(@PathVariable String id, @RequestBody BigDecimal amount){
+        bankingService.withdraw(id,amount);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/{id}/balance")
+    public ResponseEntity<BigDecimal> balance(@PathVariable String id){
+        return ResponseEntity.ok(bankingService.getBalance(id));
     }
 }
