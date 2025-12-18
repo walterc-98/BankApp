@@ -22,7 +22,7 @@ public class BankingServiceImpl implements BankingService{
     }
 
     @Override
-    public void deposit(String accountId, BigDecimal amount) {
+    public void deposit(Long accountId, BigDecimal amount) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId)
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
         bankAccount.deposit(amount);
@@ -30,7 +30,7 @@ public class BankingServiceImpl implements BankingService{
     }
 
     @Override
-    public void withdraw(String accountId, BigDecimal amount) {
+    public void withdraw(Long accountId, BigDecimal amount) {
         BankAccount bankAccount= bankAccountRepository.findById(accountId)
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
         bankAccount.withdraw(amount);
@@ -38,7 +38,7 @@ public class BankingServiceImpl implements BankingService{
     }
 
     @Override
-    public BigDecimal getBalance(String accountId) {
+    public BigDecimal getBalance(Long accountId) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId)
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
         return bankAccount.getBalance();

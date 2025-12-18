@@ -26,19 +26,19 @@ public class BankingController {
     }
 
     @PostMapping("/{id}/deposit")
-    public ResponseEntity<Void> deposit(@PathVariable String id, @RequestBody BigDecimal amount){
+    public ResponseEntity<Void> deposit(@PathVariable Long id, @RequestBody BigDecimal amount){
         bankingService.deposit(id,amount);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PostMapping("/{id}/withdraw")
-    public ResponseEntity<Void> withdraw(@PathVariable String id, @RequestBody BigDecimal amount){
+    public ResponseEntity<Void> withdraw(@PathVariable Long id, @RequestBody BigDecimal amount){
         bankingService.withdraw(id,amount);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping("/{id}/balance")
-    public ResponseEntity<BigDecimal> balance(@PathVariable String id){
+    public ResponseEntity<BigDecimal> balance(@PathVariable Long id){
         return ResponseEntity.ok(bankingService.getBalance(id));
     }
 }

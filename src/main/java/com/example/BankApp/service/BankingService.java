@@ -8,9 +8,9 @@ public interface BankingService {
 
     void createAccount(CheckingAccount checkingAccount);
 
-    void deposit(String accountId, BigDecimal amount);
+    void deposit(Long accountId, BigDecimal amount);
 
-    void withdraw(String accountId, BigDecimal amount);
+    void withdraw(Long accountId, BigDecimal amount);
 
-    BigDecimal getBalance(String accountId);
+    BigDecimal getBalance(Long accountId);
 }
