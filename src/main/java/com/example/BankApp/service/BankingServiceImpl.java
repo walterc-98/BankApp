@@ -3,6 +3,7 @@ package com.example.BankApp.service;
 import com.example.BankApp.model.BankAccount;
 import com.example.BankApp.model.CheckingAccount;
 import com.example.BankApp.repository.BankAccountRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ public class BankingServiceImpl implements BankingService{
     }
 
     @Override
+    @Transactional
     public void deposit(Long accountId, BigDecimal amount) {
         BankAccount bankAccount = bankAccountRepository.findById(accountId)
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
@@ -30,6 +32,7 @@ public class BankingServiceImpl implements BankingService{
     }
 
     @Override
+    @Transactional
     public void withdraw(Long accountId, BigDecimal amount) {
         BankAccount bankAccount= bankAccountRepository.findById(accountId)
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
