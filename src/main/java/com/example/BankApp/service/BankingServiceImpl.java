@@ -31,6 +31,7 @@ public class BankingServiceImpl implements BankingService{
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
         bankAccount.deposit(amount);
         bankAccountRepository.save(bankAccount);
+        System.out.println("Deposited to account " + accountId + ". Version: " + bankAccount.getVersion());
     }
 
     @Override
@@ -41,6 +42,7 @@ public class BankingServiceImpl implements BankingService{
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
         bankAccount.withdraw(amount);
         bankAccountRepository.save(bankAccount);
+        System.out.println("Withdraw to account " + accountId + ". Version: " + bankAccount.getVersion());
     }
 
     @Override
