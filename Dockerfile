@@ -1,7 +1,7 @@
 #
 # Build stage
 #
-FROM maven:3.8.3-openjdk-17 AS build
+FROM maven:3.9.9-eclipse-temurin-23 AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
@@ -9,7 +9,7 @@ RUN mvn -f /home/app/pom.xml clean package
 #
 # Run stage
 #
-FROM openjdk:17
+FROM eclipse-temurin:23
 COPY --from=build /home/app/target/BankApp-0.0.1-SNAPSHOT.jar /usr/local/lib/BankApp-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
 USER 10014
