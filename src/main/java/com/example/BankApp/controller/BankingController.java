@@ -33,7 +33,7 @@ public class BankingController {
     }
 
     @PutMapping("/{id}/withdraw")
-    public ResponseEntity<Void> withdraw(@PathVariable Long id, @RequestBody BigDecimal amount){
+    public ResponseEntity<Void> withdraw(@PathVariable Long id, @RequestParam BigDecimal amount){
         bankingService.withdraw(id,amount);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
