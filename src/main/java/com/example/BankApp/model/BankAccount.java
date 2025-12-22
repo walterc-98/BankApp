@@ -18,6 +18,9 @@ public abstract class BankAccount {
     @Column(name="account_id")
     private Long id;
 
+    @Version
+    private Long version;
+
     private String name;
 
     protected BigDecimal balance;
