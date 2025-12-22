@@ -19,7 +19,7 @@ public class BankingServiceImpl implements BankingService{
     }
 
     @Override
-    public void createAccount(CheckingAccount checkingAccount) {
+    public void createAccount(BankAccount checkingAccount) {
         bankAccountRepository.save(checkingAccount);
     }
 
