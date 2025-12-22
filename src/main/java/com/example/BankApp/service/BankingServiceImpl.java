@@ -1,5 +1,6 @@
 package com.example.BankApp.service;
 
+import com.example.BankApp.exception.InvalidAmountException;
 import com.example.BankApp.model.BankAccount;
 import com.example.BankApp.model.CheckingAccount;
 import com.example.BankApp.repository.BankAccountRepository;
@@ -25,6 +26,7 @@ public class BankingServiceImpl implements BankingService{
     @Override
     @Transactional
     public void deposit(Long accountId, BigDecimal amount) {
+        validateAmount(amount);
         BankAccount bankAccount = bankAccountRepository.findById(accountId)
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
         bankAccount.deposit(amount);
@@ -34,6 +36,7 @@ public class BankingServiceImpl implements BankingService{
     @Override
     @Transactional
     public void withdraw(Long accountId, BigDecimal amount) {
+        validateAmount(amount);
         BankAccount bankAccount= bankAccountRepository.findById(accountId)
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
         bankAccount.withdraw(amount);
@@ -45,5 +48,11 @@ public class BankingServiceImpl implements BankingService{
         BankAccount bankAccount = bankAccountRepository.findById(accountId)
                 .orElseThrow(()-> new IllegalArgumentException("Account not found"));
         return bankAccount.getBalance();
+    }
+
+    private static void validateAmount(BigDecimal amount) {
+        if(amount == null) throw new InvalidAmountException("Amount cannot be null");
+        if(amount.signum() < 0) throw new InvalidAmountException("Amount cannot be negative");
+        if(amount.scale() > 2) throw new InvalidAmountException("Amount cannot have more than 2 decimal places");
     }
 }
