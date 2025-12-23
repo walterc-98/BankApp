@@ -1,0 +1,17 @@
+<mapper namespace="com.example.BankApp.repository.TransactionMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO transactions(account_id, type, amount, created_at)
+        VALUES (#{accountId}, #{type}, #{amount}, NOW())
+    </insert>
+
+    <select id="findByAccountId"
+            resultType="com.yourapp.bank.model.BankTransaction">
+        SELECT id, account_id, type, amount, created_at
+        FROM transactions
+        WHERE account_id = #{accountId}
+        ORDER BY created_at DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+</mapper>

@@ -1,0 +1,27 @@
+<mapper namespace="com.example.BankApp.repository.AccountMapper">
+
+    <select id="findById" resultType="com.yourapp.bank.model.Account">
+        SELECT id, account_number, balance, status, customer_id
+        FROM accounts
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByIdForUpdate" resultType="com.yourapp.bank.model.Account">
+        SELECT id, account_number, balance, status, customer_id
+        FROM accounts
+        WHERE id = #{id}
+        FOR UPDATE
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO accounts(account_number, balance, status, customer_id)
+        VALUES (#{accountNumber}, #{balance}, #{status}, #{customerId})
+    </insert>
+
+    <update id="updateBalance">
+        UPDATE accounts
+        SET balance = #{balance}
+        WHERE id = #{id}
+    </update>
+
+</mapper>
