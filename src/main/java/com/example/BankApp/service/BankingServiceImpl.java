@@ -1,8 +1,6 @@
 package com.example.BankApp.service;
 
 import com.example.BankApp.exception.InvalidAmountException;
-import com.example.BankApp.model.BankAccount;
-import com.example.BankApp.model.CheckingAccount;
 import com.example.BankApp.repository.BankAccountRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;

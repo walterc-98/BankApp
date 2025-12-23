@@ -1,6 +1,5 @@
 package com.example.BankApp.controller;
 
-import com.example.BankApp.model.CheckingAccount;
 import com.example.BankApp.service.BankingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
